@@ -16,6 +16,5 @@ Sur la base de ce template:
         - l'icône du panier permettra de se rendre sur le composant Panier pour afficher tous les produits inclus
     - sur la page home, en plus de l'ajout dans le panier, au clic sur le lien see more, se rendre sur la page détail du produit et depuis cette page permettre également l'ajout dans le panier
 
-
-
 Lien repo'
+[https://github.com/Romain-14/vi-shop_fsjs40]
