@@ -20,7 +20,7 @@ function Header() {
 		window.innerWidth > 600 ? "tabletAndMore" : "mobile"
 	);
 	const { isOpen, toggleMenu } = useContext(MenuContext);
-    
+
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth > 600) {
@@ -40,37 +40,38 @@ function Header() {
 	return (
 		<header>
 			<Link to={"/"}>
-				<h1><FontAwesomeIcon icon={faOpencart} /> Vi-Shop</h1>
+				<h1>
+					<FontAwesomeIcon icon={faOpencart} /> Vi-Shop
+				</h1>
 			</Link>
-			{type !== "tabletAndMore" && (
+			{type === "mobile" && (
 				<button onClick={toggleMenu}>
 					<FontAwesomeIcon icon={faBars} />
 				</button>
 			)}
-			{isOpen && (
-				<nav
-					className={`nav ${
-						type !== "tabletAndMore" ? "burger" : ""
-					}`}
-				>
-					<Link to={"/"}>
-						<FontAwesomeIcon icon={faHome} /> home
+
+			<nav
+				className={`nav ${
+					type === "mobile" && isOpen ? "burger" : "screen"
+				}`}
+			>
+				<Link to={"/"}>
+					<FontAwesomeIcon icon={faHome} /> home
+				</Link>
+				<Link to={"cart"}>
+					<FontAwesomeIcon icon={faCartShopping} /> cart
+				</Link>
+
+				{state.user.isLogged ? (
+					<button onClick={() => state.logout()}>
+						<FontAwesomeIcon icon={faRightFromBracket} /> logout
+					</button>
+				) : (
+					<Link to={"login"}>
+						<FontAwesomeIcon icon={faRightToBracket} /> login
 					</Link>
-					<Link to={"cart"}>
-						<FontAwesomeIcon icon={faCartShopping} /> cart
-					</Link>
-                    
-					{state.user.isLogged ? (
-						<button onClick={() => state.logout()}>
-							<FontAwesomeIcon icon={faRightFromBracket} /> logout
-						</button>
-					) : (
-						<Link to={"login"}>
-							<FontAwesomeIcon icon={faRightToBracket} /> login
-						</Link>
-					)}
-				</nav>
-			)}
+				)}
+			</nav>
 		</header>
 	);
 }
